@@ -3,7 +3,7 @@
 from werkzeug.test import Client
 
 from ni_spec_server_proxy.constants import FileUpload, ScmResponseStateCodes
-from tests.constants import DATA, MESSAGE, STATE, STATUS_SUCCESS
+from tests.constants import DATA, MESSAGE, STATE, STATUS_SUCCESS_RESPONSE_CODE
 
 
 def test___get_process_execution_status___returns_success_response(client: Client):
@@ -11,7 +11,7 @@ def test___get_process_execution_status___returns_success_response(client: Clien
 
     jsonified_response = response.get_json()
 
-    assert response.status_code == STATUS_SUCCESS
+    assert response.status_code == STATUS_SUCCESS_RESPONSE_CODE
     assert jsonified_response[DATA][0]["processHistoryID"] == FileUpload.PROCESS_HISTORY_ID
     assert jsonified_response[DATA][0]["fileName"] == FileUpload.DEFAULT_FILE_NAME
     assert jsonified_response[DATA][0]["processType"] == 1

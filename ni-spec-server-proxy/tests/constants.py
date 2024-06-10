@@ -1,0 +1,15 @@
+"""Constants utilized in the test cases."""
+
+DATA = "data"
+STATE = "state"
+
+STATUS_SUCCESS = 200
+STATUS_NOT_FOUND = 404
+
+
+VALID_PRODUCT_NAME = "GR_PWA"
+NO_SPEC_PRODUCT_NAME = "Test partnumber"
+VALID_PRODUCT_REVISION = "1.0"
+
+INVALID_PRODUCT_NAME = "INVALID PRODUCT"
+

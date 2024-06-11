@@ -6,6 +6,7 @@ from ni_spec_server_proxy.constants import ScmResponseStateCodes
 from ni_spec_server_proxy.main import TAKE_COUNT
 from tests.constants import (
     DATA,
+    GET_PRODUCTS_URL,
     NO_SPEC_PRODUCT_GET_SPEC_URL,
     STATE,
     STATUS_SUCCESS_RESPONSE_CODE,
@@ -16,7 +17,7 @@ from tests.constants import (
 def test___connected_to_sle___available_products_available_specs___returns_success_response(
     client: Client,
 ):
-    response = client.get("/niscm/public/products")
+    response = client.get(GET_PRODUCTS_URL)
 
     jsonified_response = response.get_json()
 
@@ -36,7 +37,7 @@ def test___connected_to_sle___available_products_available_specs___returns_succe
 def test___connected_to_sle___available_products_unavailable_specs___returns_success_response(
     client: Client,
 ):
-    response = client.get("/niscm/public/products")
+    response = client.get(GET_PRODUCTS_URL)
 
     jsonified_response = response.get_json()
 

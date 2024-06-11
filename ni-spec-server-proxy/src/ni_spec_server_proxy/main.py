@@ -126,7 +126,8 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
     """
     file = request.files[FileUpload.FORM_COLLECTION]
 
-    # FileName format: [Station ID][Sequence File][Data][Time][Batch Serial Number][UUT Serial Number][Test Socket].csv
+    # FileName format:
+    # [StationID][SequenceFile][Data][Time][BatchSerialNumber][UUTSerialNumber][TestSocket].csv
     splitted_file_name = file.filename.split("]")
 
     file_name = file.filename.replace("[", "")

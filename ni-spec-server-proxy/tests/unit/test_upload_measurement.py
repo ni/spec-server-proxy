@@ -1,15 +1,13 @@
 """Contains tests to validate upload_measurement API."""
 
-import io
+from typing import Callable
 
-from werkzeug.datastructures import FileStorage
 from werkzeug.test import Client
 
 from ni_spec_server_proxy.constants import ScmResponseStateCodes
 from tests.constants import (
     DATA,
     DISCIPLINE,
-    INVALID_MEASUREMENT_FILE_NAME,
     INVALID_MEASUREMENT_FILE_PATH,
     INVALID_PRODUCT_NAME,
     STATE,
@@ -24,25 +22,15 @@ from tests.constants import (
 )
 
 
-def test___valid_measurement_file___upload_measurement___returns_success_response(client: Client):
-    with open(
-        VALID_MEASUREMENT_FILE_PATH,
-        "rb",
-    ) as f:
-        file_content = f.read()
-    files = {
-        "formCollection": (
-            FileStorage(
-                stream=io.BytesIO(file_content),
-                filename=VALID_MEASUREMENT_FILE_NAME,
-                content_type="text/csv",
-            )
-        )
-    }
+def test___valid_measurement_file___upload_measurement___returns_success_response(
+    client: Client,
+    get_upload_measurement_data: Callable,
+):
+    data = get_upload_measurement_data(file_path=VALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
         f"/niscm/public/data/upload/{VALID_PRODUCT_NAME}/{VALID_PRODUCT_REVISION}/{DISCIPLINE}",
-        data=files,
+        data=data,
         content_type="multipart/form-data",
     )
 
@@ -56,25 +44,13 @@ def test___valid_measurement_file___upload_measurement___returns_success_respons
 
 def test___invalid_measurement_file___upload_measurement___returns_internal_server_error(
     client: Client,
+    get_upload_measurement_data: Callable,
 ):
-    with open(
-        INVALID_MEASUREMENT_FILE_PATH,
-        "rb",
-    ) as f:
-        file_content = f.read()
-    files = {
-        "formCollection": (
-            FileStorage(
-                stream=io.BytesIO(file_content),
-                filename=INVALID_MEASUREMENT_FILE_NAME,
-                content_type="text/csv",
-            )
-        )
-    }
+    data = get_upload_measurement_data(file_path=INVALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
         f"/niscm/public/data/upload/{VALID_PRODUCT_NAME}/{VALID_PRODUCT_REVISION}/{DISCIPLINE}",
-        data=files,
+        data=data,
         content_type="multipart/form-data",
     )
 
@@ -85,25 +61,15 @@ def test___invalid_measurement_file___upload_measurement___returns_internal_serv
     assert jsonified_response[STATE] == ScmResponseStateCodes.FAILURE
 
 
-def test___invalid_product___upload_measurement___returns_product_not_found(client: Client):
-    with open(
-        VALID_MEASUREMENT_FILE_PATH,
-        "rb",
-    ) as f:
-        file_content = f.read()
-    files = {
-        "formCollection": (
-            FileStorage(
-                stream=io.BytesIO(file_content),
-                filename=VALID_MEASUREMENT_FILE_NAME,
-                content_type="text/csv",
-            )
-        )
-    }
+def test___invalid_product___upload_measurement___returns_product_not_found(
+    client: Client,
+    get_upload_measurement_data: Callable,
+):
+    data = get_upload_measurement_data(file_path=VALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
         f"/niscm/public/data/upload/{INVALID_PRODUCT_NAME}/{VALID_PRODUCT_REVISION}/{DISCIPLINE}",
-        data=files,
+        data=data,
         content_type="multipart/form-data",
     )
 

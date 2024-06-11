@@ -1,9 +1,8 @@
 """Contains tests to validate the upload_measurement feature."""
 
-import io
+from typing import Callable
 
 from werkzeug import Client
-from werkzeug.datastructures import FileStorage
 
 from ni_spec_server_proxy.constants import FileUpload, ScmResponseStateCodes
 from tests.constants import (
@@ -20,25 +19,15 @@ from tests.constants import (
 )
 
 
-def test___upload_measurement_process_execution_status___returns_success_response(client: Client):
-    with open(
-        VALID_MEASUREMENT_FILE_PATH,
-        "rb",
-    ) as f:
-        file_content = f.read()
-    files = {
-        "formCollection": (
-            FileStorage(
-                stream=io.BytesIO(file_content),
-                filename=VALID_MEASUREMENT_FILE_NAME,
-                content_type="text/csv",
-            )
-        )
-    }
+def test___upload_measurement_process_execution_status___returns_success_response(
+    client: Client,
+    get_upload_measurement_data: Callable,
+):
+    data = get_upload_measurement_data(file_path=VALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
         f"/niscm/public/data/upload/{VALID_PRODUCT_NAME}/{VALID_PRODUCT_REVISION}/{DISCIPLINE}",
-        data=files,
+        data=data,
         content_type="multipart/form-data",
     )
 

@@ -1,12 +1,40 @@
 """Pytest configuration file."""
 
+import io
+import os
+from typing import Dict, Tuple
+
 import pytest
+from werkzeug.datastructures import FileStorage
 
 from ni_spec_server_proxy.main import app
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def client():
-    """Test fixture that creates a Flaks test client."""
+    """Fixture that creates a Flaks test client."""
     with app.test_client() as test_client:
         yield test_client
+
+
+@pytest.fixture
+def get_upload_measurement_data():
+    """Fixture to return upload measurement data."""
+
+    def _get_upload_measurement_data(file_path: str) -> Dict[str, Tuple]:
+        with open(file_path, "rb") as f:
+            file_content = f.read()
+
+        data = {
+            "formCollection": (
+                FileStorage(
+                    stream=io.BytesIO(file_content),
+                    filename=os.path.basename(file_path),
+                    content_type="text/csv",
+                )
+            )
+        }
+
+        return data
+
+    yield _get_upload_measurement_data

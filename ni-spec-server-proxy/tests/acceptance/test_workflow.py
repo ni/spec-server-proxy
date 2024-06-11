@@ -5,7 +5,7 @@ import io
 from werkzeug import Client
 from werkzeug.datastructures import FileStorage
 
-from ni_spec_server_proxy.constants import ScmResponseStateCodes
+from ni_spec_server_proxy.constants import FileUpload, ScmResponseStateCodes
 from ni_spec_server_proxy.main import TAKE_COUNT
 from tests.constants import (
     DATA,
@@ -14,6 +14,7 @@ from tests.constants import (
     INVALID_MEASUREMENT_FILE_PATH,
     INVALID_PRODUCT_GET_SPEC_URL,
     INVALID_PRODUCT_NAME,
+    MESSAGE,
     STATE,
     STATUS_INTERNAL_SERVER_RESPONSE_CODE,
     STATUS_NOT_FOUND_RESPONSE_CODE,
@@ -72,6 +73,28 @@ def test___connected_to_sle___product_available____returns_success_response(clie
     assert not jsonified_file_upload_response[DATA]["errors"]
     assert jsonified_file_upload_response[STATE] == SUCCESS_STATE_IN_FILE_UPLOAD
 
+    process_execution_status_response = client.get("/niscm/public/processexecutionstatus")
+
+    jsonified_process_execution_status_response = process_execution_status_response.get_json()
+
+    assert process_execution_status_response.status_code == STATUS_SUCCESS_RESPONSE_CODE
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["processHistoryID"]
+        == FileUpload.PROCESS_HISTORY_ID
+    )
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["fileName"]
+        == FileUpload.DEFAULT_FILE_NAME
+    )
+    assert jsonified_process_execution_status_response[DATA][0]["processType"] == 1
+    assert jsonified_process_execution_status_response[DATA][0]["statusCode"] == 1
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["statusMessage"]
+        == FileUpload.SUCCESS_MESSAGE
+    )
+    assert jsonified_process_execution_status_response[MESSAGE] == FileUpload.SUCCESS_MESSAGE
+    assert jsonified_process_execution_status_response[STATE] == ScmResponseStateCodes.SUCCESS
+
 
 def test___connected_to_sle___product_unavailable___return_not_found_response(client: Client):
     products_response = client.get("/niscm/public/products")
@@ -116,6 +139,28 @@ def test___connected_to_sle___product_unavailable___return_not_found_response(cl
     assert response.status_code == STATUS_NOT_FOUND_RESPONSE_CODE
     assert not jsonified_response[DATA]
     assert jsonified_response[STATE] == ScmResponseStateCodes.FAILURE
+
+    process_execution_status_response = client.get("/niscm/public/processexecutionstatus")
+
+    jsonified_process_execution_status_response = process_execution_status_response.get_json()
+
+    assert process_execution_status_response.status_code == STATUS_SUCCESS_RESPONSE_CODE
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["processHistoryID"]
+        == FileUpload.PROCESS_HISTORY_ID
+    )
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["fileName"]
+        == FileUpload.DEFAULT_FILE_NAME
+    )
+    assert jsonified_process_execution_status_response[DATA][0]["processType"] == 1
+    assert jsonified_process_execution_status_response[DATA][0]["statusCode"] == 1
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["statusMessage"]
+        == FileUpload.SUCCESS_MESSAGE
+    )
+    assert jsonified_process_execution_status_response[MESSAGE] == FileUpload.SUCCESS_MESSAGE
+    assert jsonified_process_execution_status_response[STATE] == ScmResponseStateCodes.SUCCESS
 
 
 def test___connected_to_sle___invalid_measurement_file___return_server_error_response(
@@ -163,3 +208,25 @@ def test___connected_to_sle___invalid_measurement_file___return_server_error_res
     assert response.status_code == STATUS_INTERNAL_SERVER_RESPONSE_CODE
     assert not jsonified_response[DATA]
     assert jsonified_response[STATE] == ScmResponseStateCodes.FAILURE
+
+    process_execution_status_response = client.get("/niscm/public/processexecutionstatus")
+
+    jsonified_process_execution_status_response = process_execution_status_response.get_json()
+
+    assert process_execution_status_response.status_code == STATUS_SUCCESS_RESPONSE_CODE
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["processHistoryID"]
+        == FileUpload.PROCESS_HISTORY_ID
+    )
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["fileName"]
+        == FileUpload.DEFAULT_FILE_NAME
+    )
+    assert jsonified_process_execution_status_response[DATA][0]["processType"] == 1
+    assert jsonified_process_execution_status_response[DATA][0]["statusCode"] == 1
+    assert (
+        jsonified_process_execution_status_response[DATA][0]["statusMessage"]
+        == FileUpload.SUCCESS_MESSAGE
+    )
+    assert jsonified_process_execution_status_response[MESSAGE] == FileUpload.SUCCESS_MESSAGE
+    assert jsonified_process_execution_status_response[STATE] == ScmResponseStateCodes.SUCCESS

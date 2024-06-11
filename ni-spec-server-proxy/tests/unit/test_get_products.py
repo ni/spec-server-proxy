@@ -7,7 +7,7 @@ from ni_spec_server_proxy.main import TAKE_COUNT
 from tests.constants import DATA, STATE, STATUS_SUCCESS_RESPONSE_CODE
 
 
-def test___systemlink_client___get_products___returns_available_products(client: Client):
+def test___connected_to_sle___get_products___returns_available_products(client: Client):
     response = client.get("/niscm/public/products")
 
     jsonified_response = response.get_json()

@@ -31,5 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Empty condition column value is skipped in the SLE response, whereas SCM does have it has None.
 - Integer/float type condition column names, not recognized by the jupyter notebook in SLE for reading specs.
 - Condition column name with many units, not stored in the clear way in SLE response.
-- File is saved locally and pushed to SLE.
+- File is saved locally to a folder in the current working directory and pushed to SLE.
 - File name is sanitized to have empty space `''` for `[` and underscores `_` for `]`.

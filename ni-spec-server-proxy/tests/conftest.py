@@ -12,7 +12,7 @@ from ni_spec_server_proxy.main import app
 
 @pytest.fixture
 def client():
-    """Fixture that creates a Flaks test client."""
+    """Fixture that creates a Flask test client."""
     with app.test_client() as test_client:
         yield test_client
 

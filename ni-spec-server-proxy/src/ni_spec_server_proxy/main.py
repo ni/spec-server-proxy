@@ -1,5 +1,7 @@
 """Implementation of flask server to use SCM API end points."""
 
+import os
+
 import pandas as pd
 import systemlink.clients.nitestmonitor as testmon
 from flask import Flask, Response, jsonify, request
@@ -124,6 +126,7 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
     Returns:
         Response: Defaults to success response.
     """
+    os.makedirs(FileUpload.UPLOADS_FOLDER, exist_ok=True)
     file = request.files[FileUpload.FORM_COLLECTION]
 
     # FileName format:
@@ -132,10 +135,11 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
 
     file_name = file.filename.replace("[", "")
     file_name = file_name.replace("]", "_")
+    file_path = os.path.join(FileUpload.UPLOADS_FOLDER, file_name)
     file.seek(0)
-    file.save(file_name)
+    file.save(file_path)
 
-    measurement_df = pd.read_csv(file_name, encoding="latin1", header=0)
+    measurement_df = pd.read_csv(file_path, encoding="latin1", header=0)
     # Add `TestBench` column.
     measurement_df.insert(0, TEST_BENCH_COLUMN, EMPTY_VALUE)
     measurement_df.at[0, TEST_BENCH_COLUMN] = META
@@ -150,10 +154,10 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
     if len(splitted_file_name) > 6:
         measurement_df.loc[1:, CHIP_ID_COLUMN] = splitted_file_name[CHIP_ID_INDEX][1:]
 
-    measurement_df.to_csv(file_name, index=False)
+    measurement_df.to_csv(file_path, index=False)
 
     response = await upload_file_to_part_number(
-        file_path=file_name,
+        file_path=file_path,
         part_number=product_name,
     )
 

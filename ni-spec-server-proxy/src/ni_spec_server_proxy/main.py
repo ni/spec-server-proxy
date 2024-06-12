@@ -126,7 +126,7 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
     Returns:
         Response: Defaults to success response.
     """
-    os.makedirs(FileUpload.UPLOADS_FOLDER, exist_ok=True)
+    os.makedirs(FileUpload.DIRECTORY, exist_ok=True)
     file = request.files[FileUpload.FORM_COLLECTION]
 
     # FileName format:
@@ -135,7 +135,7 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
 
     file_name = file.filename.replace("[", "")
     file_name = file_name.replace("]", "_")
-    file_path = os.path.join(FileUpload.UPLOADS_FOLDER, file_name)
+    file_path = os.path.join(FileUpload.DIRECTORY, file_name)
     file.seek(0)
     file.save(file_path)
 

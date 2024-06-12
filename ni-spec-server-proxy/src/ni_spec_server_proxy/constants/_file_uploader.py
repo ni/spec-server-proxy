@@ -22,7 +22,7 @@ class FileUpload:
     DEFAULT_FILE_NAME = "measurement.csv"
     PROCESS_HISTORY_ID = 12345  # Some random value since in SLE we don't have Process History ID.
     SUCCESS_MESSAGE = "File uploaded successfully."
-    UPLOADS_FOLDER = os.path.join(os.getcwd(), "Measurement CSV Files")
+    DIRECTORY = os.path.join(os.getcwd(), "Measurement CSV Files")
 
 
 class ProcessExecutionResponse:

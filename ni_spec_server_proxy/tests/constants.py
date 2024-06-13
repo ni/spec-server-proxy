@@ -21,8 +21,8 @@ STATUS_NOT_FOUND_RESPONSE_CODE = 404
 STATUS_INTERNAL_SERVER_RESPONSE_CODE = 500
 SUCCESS_STATE_IN_FILE_UPLOAD = 0
 
-VALID_PRODUCT_NAME = ""  # Valid product with specs.
-NO_SPEC_PRODUCT_NAME = ""  # Valid product without specs.
+VALID_PRODUCT_NAME = "GR_PWA"  # Valid product with specs.
+NO_SPEC_PRODUCT_NAME = "Test partnumber"  # Valid product without specs.
 INVALID_PRODUCT_NAME = "INVALID PRODUCT"
 VALID_PRODUCT_REVISION = "1.0"
 

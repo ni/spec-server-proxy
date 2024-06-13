@@ -1,5 +1,6 @@
 """Pytest configuration file."""
 
+import asyncio
 import io
 import os
 from typing import Dict, Tuple
@@ -8,6 +9,9 @@ import pytest
 from werkzeug.datastructures import FileStorage
 
 from ni_spec_server_proxy.main import app
+
+# Set event loop policy to avoid RuntimeError.
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 @pytest.fixture

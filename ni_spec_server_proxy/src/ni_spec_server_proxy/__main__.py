@@ -1,6 +1,5 @@
-"""NI SCM Proxy Server is a python server used for getting SLE Products information using 
-SCM End points.
-"""
+"""NI SCM Proxy Server is a python server used for getting SLE Products information using \
+    SCM End points."""
 
 import asyncio
 

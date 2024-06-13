@@ -1,0 +1,7 @@
+SpecID,MeasurementName,Value,Unit,Vin (V),TJ (°C),IO (A),Ripple (Hz)
+STD,STD,STD,STD,COND,COND,COND,COND
+7805_Spec_001,Output Voltage,5,V,8,0,0,0
+7805_Spec_001,Output Voltage,5,V,11,0,0,0
+7805_Spec_001,Output Voltage,5,V,14,0,0,0
+7805_Spec_001,Output Voltage,5,V,17,0,0,0
+7805_Spec_001,Output Voltage,5,V,20,0,0,0

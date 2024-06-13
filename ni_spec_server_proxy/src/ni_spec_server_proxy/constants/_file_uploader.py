@@ -1,5 +1,7 @@
 """Constants utilized in file upload to SLE."""
 
+import os
+
 from ni_spec_server_proxy.constants import ResponseField, ScmResponseStateCodes
 
 FILE_NAME_KEY = "fileName"
@@ -20,6 +22,7 @@ class FileUpload:
     DEFAULT_FILE_NAME = "measurement.csv"
     PROCESS_HISTORY_ID = 12345  # Some random value since in SLE we don't have Process History ID.
     SUCCESS_MESSAGE = "File uploaded successfully."
+    DIRECTORY = os.path.join(os.getcwd(), "Measurement CSV Files")
 
 
 class ProcessExecutionResponse:

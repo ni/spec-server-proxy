@@ -64,7 +64,9 @@ def get_condition_response_mappings(spec_conditions: List[Condition]) -> List[Di
             cond_data.value.condition_type == ConditionType.NUMERIC
             and cond_data.value.unit is not None
         ):
-            converted_cond_data[ScmGetSpecsResponse.COLUMN_NAME] += " (" + cond_data.value.unit + ")"
+            converted_cond_data[ScmGetSpecsResponse.COLUMN_NAME] += (
+                " (" + cond_data.value.unit + ")"
+            )
 
         converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE] = ",".join(
             [(str(__parse_value(val))) for val in cond_data.value.discrete]
@@ -72,7 +74,9 @@ def get_condition_response_mappings(spec_conditions: List[Condition]) -> List[Di
 
         if cond_data.value.condition_type == ConditionType.NUMERIC and not cond_data.value.range:
             converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE] = (
-                "[" + str(__parse_value(converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE])) + "]"
+                "["
+                + str(__parse_value(converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE]))
+                + "]"
             )
 
         elif cond_data.value.condition_type == ConditionType.NUMERIC and cond_data.value.range:
@@ -88,9 +92,7 @@ def get_condition_response_mappings(spec_conditions: List[Condition]) -> List[Di
                     converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE] += RANGE_SPECIFIER
 
             converted_cond_data[ScmGetSpecsResponse.COLUMN_VALUE] += RANGE_SPECIFIER.join(
-                [
-                    (str(__parse_value(val))) for val in  cond_data.value.discrete
-                ]
+                [(str(__parse_value(val))) for val in cond_data.value.discrete]
             )
 
             if cond_data.value.range[0].max is None:
@@ -144,7 +146,7 @@ def convert_query_specs_response(
     scm_get_specs_response = {
         ScmGetSpecsResponse.DATA: [],
         ScmGetSpecsResponse.MESSAGE: "All Views fetched successfully",
-        ScmGetSpecsResponse.STATE: ScmResponseStateCodes.SUCCESS
+        ScmGetSpecsResponse.STATE: ScmResponseStateCodes.SUCCESS,
     }
     count = 0
 

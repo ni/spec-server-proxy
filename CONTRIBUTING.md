@@ -1,31 +1,74 @@
-# Contributing to \<reponame\> 
+# Contributing to *ni-spec-server-proxy* 
 
-Contributions to \<reponame\> are welcome from all!
+Contributions to *ni-spec-server-proxy* are welcome from all!
 
-\<reponame\> is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/<reponame>/).
+*ni-spec-server-proxy* is managed via [git](https://git-scm.com), with the canonical upstream
+repository hosted on [GitHub](https://github.com/ni/ni-spec-server-proxy).
 
-\<reponame\> follows a pull-request model for development.  If you wish to
-contribute, you will need to create a GitHub account, fork this project, push a
-branch with your changes to your project, and then submit a pull request.
+*ni-spec-server-proxy* follows a pull-request model for development.  If
+you wish to contribute, you will need to create a GitHub account, clone this
+project, push a branch with your changes to your project, and then submit a
+pull request.
 
-Please remember to sign off your commits (e.g., by using `git commit -s` if you
-are using the command line client). This amends your git commit message with a line
-of the form `Signed-off-by: Name Lastname <name.lastmail@emailaddress.com>`. Please
-include all authors of any given commit into the commit message with a
-`Signed-off-by` line. This indicates that you have read and signed the Developer
-Certificate of Origin (see below) and are able to legally submit your code to
-this repository.
+See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
+for more details.
 
-See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/) for more details.
+**Important:** Commit titles and messages should adhere to the
+[Angular style](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+to ensure proper semantic versioning.
 
 # Getting Started
 
-- TODO: include build steps here.
+To contribute to this project, it is recommended that you follow these steps:
+
+1. Clone this repository on GitHub.
+2. Run the unit tests on your system (see Testing section). At this point,
+   if any tests fail, do not begin development. Try to investigate these
+   failures. If you're unable to do so, report an issue through our
+   [GitHub issues page](https://github.com/ni/ni-spec-server-proxy/issues).
+3. Write new tests that demonstrate your bug or feature. Ensure that these
+   new tests fail.
+4. Make your change.
+5. Run all the unit tests again (which include the tests you just added),
+   and confirm that they all pass.
+6. Send a GitHub Pull Request to the main repository's master branch. GitHub
+   Pull Requests are the expected method of code collaboration on this project.
 
 # Testing
 
-- TODO: include testing steps here.
+Before running any tests, you must have a supported version of Python (3.8+) and [Poetry](https://python-poetry.org/docs/) installed locally.
+
+**Important:** 
+
+- Configure `VALID_PRODUCT_NAME` and  `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
+
+- It is also required to install SystemLink Client and connection to SLE server is to be made.
+
+To setup virtual environement
+
+```
+cd ni_spec_server_proxy
+
+poetry env use "C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe"
+```
+
+To run commands and scripts, spawn a shell within the virtual environment managed by Poetry:
+
+```
+poetry shell
+```
+
+To run all tests in place with your current python environment setup:
+
+```
+pytest
+```
+
+To only run the tests in one particular folder, run
+
+```
+pytest tests/myfolder
+```
 
 # Developer Certificate of Origin (DCO)
 
@@ -57,5 +100,5 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 (taken from [developercertificate.org](https://developercertificate.org/))
 
-See [LICENSE](https://github.com/ni/<reponame>/blob/main/LICENSE)
-for details about how \<reponame\> is licensed.
+See [LICENSE](https://github.com/ni/ni-spec-server-proxy/blob/main/LICENSE)
+for details about how *ni-spec-server-proxy* is licensed.

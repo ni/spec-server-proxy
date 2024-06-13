@@ -40,9 +40,9 @@ Before running any tests, you must have a supported version of Python (3.8+) and
 
 **Important:** 
 
-- Configure `VALID_PRODUCT_NAME` and  `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
-
-- It is also required to install SystemLink Client and connection to SLE server is to be made.
+- Create a Product in SLE.
+- Enter the part number in `VALID_PRODUCT_NAME` and `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
+- It is required to install SystemLink Client and connection to SLE server is to be made.
 
 To setup virtual environement
 

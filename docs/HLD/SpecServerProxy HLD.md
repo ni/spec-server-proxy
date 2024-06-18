@@ -10,6 +10,7 @@
   - [Installation](#installation)
   - [Establishment of Connection With SLE](#establishment-of-connection-with-sle)
   - [Exchange of Data](#exchange-of-data)
+    - [SCM - SLE APIs](#scm---sle-apis)
     - [Get products](#get-products)
     - [Get specification](#get-specification)
     - [Upload BDC file.](#upload-bdc-file)
@@ -46,7 +47,7 @@ Currently there is no workflow to exchange data between SystemLink Enterprise (S
 
 The below picture shows data flow between SystemLink Enterprise and TestStand.
 
-![Dataflow](DataFlow.png)
+![DataFlow](DataFlow.png)
 
 ## Installation
 
@@ -81,6 +82,8 @@ The below picture shows data flow between SystemLink Enterprise and TestStand.
 - On Clicking on the *Connect* button, it should be connected to Proxy Server.
 
 ## Exchange of Data
+
+### SCM - SLE APIs
 
 | Data Exchange      | SCM API                                                                    | Equivalent SLE API                                                                                 |
 | ------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |

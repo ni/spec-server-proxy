@@ -6,12 +6,27 @@
   - [Implementation and Design](#implementation-and-design)
     - [Dependencies - NI Python Packages](#dependencies---ni-python-packages)
     - [API](#api)
+    - [Get Products](#get-products)
+      - [Key Changes](#key-changes)
+      - [SCM Server Response](#scm-server-response)
+      - [SLE Server Response](#sle-server-response)
+      - [Proxy Server Response](#proxy-server-response)
+    - [Get Specifications](#get-specifications)
+      - [Key Changes](#key-changes-1)
+      - [SCM Server Response](#scm-server-response-1)
+      - [SLE Server Response](#sle-server-response-1)
+      - [Proxy Server Response](#proxy-server-response-1)
+    - [Upload BDC file](#upload-bdc-file)
+      - [Key Changes](#key-changes-2)
+      - [SCM Server Response](#scm-server-response-2)
+      - [SLE Server Response](#sle-server-response-2)
+      - [Proxy Server Response](#proxy-server-response-2)
     - [Architecture Diagram](#architecture-diagram)
     - [Installation of NI Spec Server Proxy](#installation-of-ni-spec-server-proxy)
     - [Connection Establishment with SLE](#connection-establishment-with-sle)
-    - [Get products](#get-products)
+    - [Get products](#get-products-1)
     - [Get specification](#get-specification)
-    - [Upload BDC file.](#upload-bdc-file)
+    - [Upload BDC file.](#upload-bdc-file-1)
   - [Alternative Implementations and Designs](#alternative-implementations-and-designs)
   - [Open Issues](#open-issues)
   - [Future Plans](#future-plans)
@@ -55,9 +70,257 @@ To access the SLE APIs, a user needs the `SLE URL`, `API key` and `Workspace ID`
 
 As the SCM APIs have different request and response format when compared with their counterparts in SLE, the response from SLE APIs will be converted to SCM APIs' response format.
 
-For Get products, the `PartNumber` of the SLE product will be used as the the `Product Name` in the proxy server response.
+### Get Products
 
-For Get Specifications, conditions and info columns in SLE's response will be formatted to comply with SCM's response.
+#### Key Changes
+
+`partNumber` is used from SLE server response as `productName` in Proxy server response.
+
+#### SCM Server Response
+```
+{ 
+  "data": [ 
+    {
+      "productName": "ADV1234",
+      "id": 123,
+      "bu": "Amplifiers" ,
+      "revision": "pg2.1", 
+      "userID": "Adam",
+      "productOwner": "Adam",  
+      "isActive": true,  
+      "numberOfSpecs": 0,  
+      "failedSpecCount": 0 
+      } 
+    ],  
+    "message": "Success or a failure message text.",  
+    "state": 0
+}
+```
+
+#### SLE Server Response
+
+```
+{ 
+"products": [
+  {
+    "id": "02600cf8-c2bb-4ff9-a139-031e943fb0c0", 
+    "partNumber": "156502A-11L", 
+    "name": "cRIO-9030", 
+    "family": "cRIO", 
+    "updatedAt": "2018-05-09T15:07:42.527921Z", 
+    "keywords": [ "keyword1", "keyword2" ],
+    "properties":  {"key1": "value1" },
+    "fileIds": [ "5e30934193cac8046851acb2"], 
+    "workspace": "f94b178e-288c-4101-afb1-833992413aa7"
+  }
+], 
+"continuationToken": "token", 
+"totalCount": 1 
+}                                                                                                                                                                                                                       
+```
+
+#### Proxy Server Response
+
+```
+{
+  "data: [
+   {
+    "productName": partNumber,  
+    "revision": 1.0,
+   } 
+  ]  
+   "message": `All Views fetched successfully`, 
+   "state":`0`
+}  
+```
+
+### Get Specifications
+
+#### Key Changes
+
+`partNumber` is used from SLE server response as `productName` in Proxy server response.
+Conditions and Info columns are processed to comply with SCM server's response.
+
+#### SCM Server Response
+
+```
+{
+  "data": [
+    {
+      "specID": "SPEC01",
+      "category": "Electrical characteristics",
+      "block": "Test",
+      "specSymbol": "Ibat",
+      "specName": "Normal mode current",
+      "specType": "Parametric",
+      "min": 3.3,
+      "typical": 100.5,
+      "max": 500,
+      "unit": "µA",
+      "lastComplianceUpdatedTimeForSpec": "2021-06-16 12:57:19.9019497 +05:30",
+      "conditions": [
+        {
+          "columnName": "Temperature(deg F)",
+          "columnValue": "40"
+        }
+      ],
+      "info": [
+        {
+          "columnName": "Waveform",
+          "columnValue": "./path/to/waveform01.tdms"
+        }
+      ],
+      "id": 0
+    }
+  ],
+  "message": "Success or a failure message text.",
+  "state": 0
+}
+```
+
+#### SLE Server Response
+
+```
+{
+  "specs": [
+    {
+      "productId": "110ac9e8-4187-9870-a0b4-10dabfa02a0e",
+      "specId": "Vsat01",
+      "name": "Saturation voltage",
+      "category": "Electrical characteristics",
+      "type": "PARAMETRIC",
+      "symbol": "VSat",
+      "block": "USB",
+      "limit": {
+        "min": -66.54,
+        "typical": 180,
+        "max": 303.659
+      },
+      "unit": "mV",
+      "conditions": [
+        {
+          "name": "InputVoltage",
+          "value": {
+            "conditionType": "NUMERIC",
+            "range": [
+              {
+                "min": 50,
+                "max": 600,
+                "step": 25.55
+              }
+            ],
+            "discrete": [
+              -55,
+              66.6
+            ],
+            "unit": "mV"
+          }
+        }
+      ],
+      "keywords": [
+        "Test specification only",
+        "First"
+      ],
+      "properties": {
+        "Product manager": "Jim",
+        "Spec owner": "Jacob"
+      },
+      "workspace": "990ac9e8-41ac-9870-a0b4-10dddfa02a0e",
+      "id": "6dfb2ce3741fe56d88838cc9",
+      "createdAt": "2018-05-09T15:07:42.527921Z",
+      "createdBy": "0a9ca97e-23fc-4d71-b47e-e34b7a930f42",
+      "updatedAt": "2018-05-09T15:07:42.527921Z",
+      "updatedBy": "0a9ca97e-23fc-4d71-b47e-e34b7a930f42",
+      "version": 0
+    }
+  ],
+  "continuationToken": "string"
+}
+```
+
+#### Proxy Server Response
+
+```
+{ 
+  "data": [ 
+    {
+      "specID": "SPEC01",   
+      "category": "Electrical characteristics",   
+      "block": "Test",  
+      "specSymbol": "Ibat", 
+      "specName": "Normal mode current", 
+      "specType":"Parametric", 
+      "min": 3.3, 
+      "typical": 100.5, 
+      "max": 500, 
+      "unit": "µA", 
+      "conditions": [ 
+        { 
+          "columnName":"Temperature(deg F)", 
+          "columnValue": "40" 
+        }
+      ], 
+      "info": [ 
+        {
+          "columnName": "Waveform", 
+          "columnValue": "./path/to/waveform01.tdms" 
+        }
+      ], 
+    } 
+  ], 
+  "message": "All Views fetched successfully.", 
+  "state": 0 
+}
+```
+
+### Upload BDC file
+
+#### Key Changes
+
+Process History ID is always `12345` as it is not used further in SLE server.  
+The file id from SLE server response is used to link to it a product in SLE.
+
+#### SCM Server Response
+
+```
+{
+"data": {
+    "fileName": "file.csv",
+    "processHistoryID": 0,
+    "errors": [
+      {
+        "lineNumber": 2,
+        "errorCode": 0,
+        "description": "Invalid column type."
+      }
+    ]
+  },
+  "message": "Success or a failure message text.",
+  "state": 0
+}
+```
+
+#### SLE Server Response
+
+```
+{
+  "uri": "/nifile/v1/service-groups/Default/files/5b874c4adedd0f1c78a22a96"
+}
+```
+
+#### Proxy Server Response
+
+```
+{
+  "data": {
+    "fileName": filename, 
+    "processHistoryID": `12345`,
+    "errors": `[]`
+  }, 
+  "message": `File uploaded successfully.`,
+  "state":`0` 
+}
+```
 
 For upload BDC file, the uploaded file will be stored locally under a directory called `Measurement CSV Files` in the current working directory.
 
@@ -85,11 +348,6 @@ So, whenever there is a file upload request, it is followed by another request t
 But SLE server doesn't have equivalent API to process execution status API of SCM.
 To respond to the process execution status API request, NI Spec Server Proxy will always respond with a successful response.
 
-| Data Exchange     | SCM Response                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | SLE Response                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Proxy Server Response                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Keys Changes                                                                                                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Get products      | **{ <br>"data": [<br>{<br>"productName": "ADV1234", <br>"id": 123, <br>"bu": "Amplifiers" ,<br>"revision": "pg2.1", <br>"userID": "Adam", <br>"productOwner": "Adam",<br> "isActive": true,<br> "numberOfSpecs": 0, <br>"failedSpecCount": 0<br>}<br>], <br>"message": "Success or a failure message text.",<br> "state": 0<br/>}**                                                                                                                                                                                                                                                                                                                  | **{<br>"products": [{<br>"id": "02600cf8-c2bb-4ff9-a139-031e943fb0c0",<br>"partNumber": "156502A-11L",<br>"name": "cRIO-9030",<br>"family": "cRIO",<br>"updatedAt": "2018-05-09T15:07:42.527921Z",<br>"keywords": [<br>"keyword1",<br>"keyword2"<br>],"properties": <br>{"key1": "value1"<br>},"fileIds": [<br>"5e30934193cac8046851acb2"],<br>"workspace": "f94b178e-288c-4101-afb1-833992413aa7" <br>}],<br>"continuationToken": "token",<br>"totalCount": 1<br>}**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | {"data: [<br>{<br>"productName": `partNumber`, <br>"revision": `1.0`<br>}<br>]<br> "message": `All Views fetched successfully`, "state": `0`}                                                                                                                                                                                                                                                                                                                                                                                                              | partNumber is used from SLE server response as productName in Proxy server response                                                                                     |
-| Get specification | **{<br>"data": [<br>{"specID": "SPEC01", <br> "category": "Electrical characteristics", <br> "block": "Test", <br>"specSymbol": "Ibat",<br>"specName": "Normal mode current",<br>"specType":"Parametric",<br>"min": 3.3,<br>"typical": 100.5,<br>"max": 500,<br>"unit": "µA",<br>"lastComplianceUpdatedTimeForSpec": "2021-06-16 12:57:19.9019497 +05:30",<br>"conditions": [<br>{<br>"columnName":"Temperature(deg F)",<br>"columnValue": "40"<br>}],<br>"info": [<br>{<br>"columnName": "Waveform",<br>"columnValue": "./path/to/waveform01.tdms"<br>}],<br>"id": 0}<br>],<br>"message": "Success or afailure message text.",<br>"state": 0<br>}** | **{<br>"specs": [<br>{"productId": "110ac9e8-4187-9870-a0b4-10dabfa02a0e",<br>"specId": "Vsat01",<br>"name": "Saturation voltage",<br>"category": "Electrical characteristics"<br>"type": "PARAMETRIC",<br>"symbol": "VSat",<br>"block": "USB",<br>"limit": {<br>"min": -66.54,<br>"typical": 180,<br>"max": 303.659<br>},<br>"unit": "mV",<br>"conditions":<br>[<br>{<br>"name": "InputVoltage",<br>"value": {<br>"conditionType":"NUMERIC",<br>"range": [<br>{<br>"min": 50,<br>"max": 600,<br>"step": 25.55<br>}<br>],<br>"discrete": [<br>-55,<br>66.6<br>],<br>"unit": "mV"<br>}<br>}<br>],<br>"keywords": <br>[<br>"Test specification only",<br>"First"<br>],<br>"properties": <br>{<br>"Product manager": "Jim",<br>"Spec owner": "Jacob"<br>},<br>"workspace":"990ac9e8-41ac-9870-a0b4-10dddfa02a0e",<br>"id": "6dfb2ce3741fe56d88838cc9",<br>"createdAt": "2018-05-09T15:07:42.527921Z",<br>"createdBy":"0a9ca97e-23fc-4d71-b47e-e34b7a930f42",<br>"updatedAt": "2018-05-09T15:07:42.527921Z",<br>"updatedBy": "0a9ca97e-23fc-4d71-b47e-e34b7a930f42",<br>"version": 0<br>}<br>],<br>"continuationToken": "string"<br>}** | {<br>"data": [<br>{"specID": "SPEC01", <br> "category": "Electrical characteristics", <br> "block": "Test", <br>"specSymbol": "Ibat",<br>"specName": "Normal mode current",<br>"specType":"Parametric",<br>"min": 3.3,<br>"typical": 100.5,<br>"max": 500,<br>"unit": "µA",<br>"conditions": [<br>{<br>"columnName":"Temperature(deg F)",<br>"columnValue": "40"<br>}],<br>"info": [<br>{<br>"columnName": "Waveform",<br>"columnValue": "./path/to/waveform01.tdms"<br>}],<br>}<br>],<br>"message": "All Views fetched successfully.",<br>"state": 0<br>} | Conditions and Info columns are processed to comply with SCM server's response.                                                                                         |
-| Upload BDC file   | **{<br>"data": {<br>"fileName": "file.csv",<br>"processHistoryID": 0<br>"errors": [<br>{<br>"lineNumber": 2,<br>"errorCode": 0,<br>"description": "Invalid column type."<br>}<br>]<br>},<br>"message": "Success or a failure message text.",<br>"state": 0<br>}**                                                                                                                                                                                                                                                                                                                                                                                    | **{<br>"uri": "/nifile/v1/service-groups/Default/files/`5b874c4adedd0f1c78a22a96`"<br>}**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | {<br>"data": {"fileName": filename,<br>"processHistoryID": `12345`, <br>"errors": `[]`, <br>}, <br>"message": `File uploaded successfully.` <br>"state": `0`<br>}                                                                                                                                                                                                                                                                                                                                                                                          | Process History ID is always `12345` as it is not used further in SLE server.  The highlighted file id from SLE server response is used to link to it a product in SLE. |
 ### Architecture Diagram
 
 The below picture shows data flow between SystemLink Enterprise and TestStand.

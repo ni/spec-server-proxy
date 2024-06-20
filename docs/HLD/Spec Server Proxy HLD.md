@@ -277,8 +277,7 @@ Conditions and Info columns are processed to comply with SCM server's response.
 
 #### Key Changes
 
-Process History ID is always `12345` as it is not used further in SLE server.  
-The file id from SLE server response is used to link to it a product in SLE.
+Process History ID is always `12345` as it is not used further in SLE server.
 
 #### SCM Server Response
 
@@ -335,9 +334,7 @@ The BDC file will contain the `STD` and `COND` columns. The Proxy server will ad
 
 The column `TestBench` will be filled with `minion id`. The `minion id` can be found in the following path `"C:\ProgramData\National Instruments\salt\conf\minion_id"`.
 
-The column `ChipId` will be filled with `UUT Serial Number` if it is available in the file name.
-
-If `UUT Serial Number` is not available in the file name, the column `ChipId` will be left empty.
+The column `ChipId` will be filled with `UUT Serial Number` if it is available in the file name. If `UUT Serial Number` is not available in the file name, the column `ChipId` will be left empty.
 
 The BDC file upload to SCM server involves two API calls.
 - One request for uploading the file to SCM server.
@@ -347,6 +344,14 @@ So, whenever there is a file upload request, it is followed by another request t
 
 But SLE server doesn't have equivalent API to process execution status API of SCM.
 To respond to the process execution status API request, NI Spec Server Proxy will always respond with a successful response.
+
+In SCM the file is directly uploaded to a product. But in SLE the file is uploaded to server and then required to be linked with a product. So the file id from the upload API response is used to link it to the product using another API `/v2/update-products`.
+
+Example Response:
+{
+"uri": "/nifile/v1/service-groups/Default/files/`5b874c4adedd0f1c78a22a96`"
+}
+
 
 ### Architecture Diagram
 

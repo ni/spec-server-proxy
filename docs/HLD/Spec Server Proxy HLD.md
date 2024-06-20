@@ -48,7 +48,7 @@ The below table shows the API endpoints of SCM and its equivalent in SLE that wi
 | Get Specifications | `/niscm/public/spec/<product_name>/<product_revision>`                     | `/nispec/v1/query-specs`                                                                           |
 | Upload BDC file    | `/niscm/public/data/upload/<product_name>/<product_revision>/<discipline>` | `/v1/service-groups/Default/upload-files` <br/> To link the file to product: `/v2/update-products` |
 
-To access the SLE APIs, user need the `SLE URL`, `API key` and `Workspace ID`. This information can be found in the following path once the connection with SLE is established using the SystemLink Client,
+To access the SLE APIs, user need the `SLE URL`, `API key` and `Workspace ID`. Once the connection with SLE is established using the SystemLink Client, this information can be found in the following path,
 - URL and API Key - `"C:\ProgramData\National Instruments\Skyline\HttpConfigurations\http_master.json"`
 - WorkspaceID - `"C:\ProgramData\National Instruments\salt\conf\grains"`
 

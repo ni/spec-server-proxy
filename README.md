@@ -8,6 +8,10 @@
 
 - Follow the steps to set up [NI SystemLink Client](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/setting-up-systemlink-client.html#:~:text=Search%20for%20and%20install%20NI,which%20you%20want%20to%20connect)
 
+#### Note
+
+- Ensure to select the `NI SystemLink Python 3.8 SDK` during installation of NI SystemLink Client.
+
 ### Code Setup
 
 - Clone the repository using `git clone <respository link>`.

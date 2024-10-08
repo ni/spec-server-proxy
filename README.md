@@ -25,6 +25,10 @@
 - Run `poetry shell` to activate virtual environment.
 - Run `poetry install` to install dependency files.
 
+#### Note
+
+- Ensure NI VPN is connected.
+
 ### Example using NI TestStand
 
 #### Build whl File
@@ -41,6 +45,6 @@
 - Open NI TestStand.
 - Click `Tools`.
 - Click `Import/Update from Specification Compliance Manager (SCM)`.
-- In the opened dialog box, enter Server URL as `http://localhost:8000/`.
+- In the opened dialog box, enter Server URL as `http://localhost:50000/`.
 - No API key is required.
 - Click `Connect` to connect to NI Spec Server Proxy. Ensure the NI Spec Server Proxy server is running before connecting.

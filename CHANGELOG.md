@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## NI Spec Server Proxy
 
+## [1.2.1.dev0] - 2024-10-09
+
+### Changed
+
+- To Local host from internal host. Use `localhost` instead of `0.0.0.0` while hosting.
+- User manual set up instruction and README.
+
 ## [1.2.0] - 2024-05-16
 
 ### Changed

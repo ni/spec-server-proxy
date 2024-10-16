@@ -1,46 +1,36 @@
 # NI Spec Server Proxy
 
-### Description
+- [NI Spec Server Proxy](#ni-spec-server-proxy)
+  - [Introduction](#introduction)
+  - [Dependencies](#dependencies)
+  - [Example using NI TestStand](#example-using-ni-teststand)
+    - [Installation of whl File](#installation-of-whl-file)
+    - [NI TestStand](#ni-teststand)
+
+## Introduction
 
 - NI Spec Server Proxy is a python server used for accessing SLE products and specifications using SLE APIs.
 
-### Prerequisites
+## Dependencies
 
-- Follow the steps to set up [NI SystemLink Client](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/setting-up-systemlink-client.html#:~:text=Search%20for%20and%20install%20NI,which%20you%20want%20to%20connect)
+- Python 3.8 - From [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html#521644)
+- [aiohttp = "^3.10.9"](https://pypi.org/project/aiohttp/)
+- [yarl = "1.13.0"](https://pypi.org/project/yarl/1.13.0/)
+- [flask = "^3.0.3"](https://pypi.org/project/Flask/)
+- [asgiref = "^3.8.1"](https://pypi.org/project/asgiref/)
+- [nisystemlink-clients = "^1.3.0"](https://pypi.org/project/nisystemlink-clients/)
+- systemlink-sdk = "^24.0.0" From [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html#521644)
+- [pyyaml = "^6.0.0"](https://pypi.org/project/PyYAML/)
+- [pandas = "^2.0.0"](https://pypi.org/project/pandas/)
 
-#### Note
+## Example using NI TestStand
 
-- Ensure to select the `NI SystemLink Python 3.8 SDK` during installation of NI SystemLink Client.
-
-### Code Setup
-
-- Clone the repository using `git clone <respository link>`.
-- Check out to the required branch using `git checkout <branch name>`.
-
-### Setup Virtual Environment
-
-- Open terminal.
-- Run `cd ni-spec-server-proxy`
-- Run `poetry env use "C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe"`.
-- Run `poetry shell` to activate virtual environment.
-- Run `poetry install` to install dependency files.
-
-#### Note
-
-- Ensure NI VPN is connected.
-
-### Example using NI TestStand
-
-#### Build whl File
-
-- Run `poetry build` to build whl file.
-
-#### Installation of whl File
+### Installation of whl File
 
 - Run `"C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe" -m pip install ni_spec_server_proxy-X_X_X-py3-none-any.whl` to install whl file.
 - Run `"C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe" -m ni_spec_server_proxy` to run server.
 
-#### NI TestStand
+### NI TestStand
 
 - Open NI TestStand.
 - Click `Tools`.

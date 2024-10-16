@@ -17,7 +17,7 @@ from tests.constants import (
 )
 
 
-def test___get_process_execution_status___returns_success_response(client: Client):
+def test___get_process_execution_status___returns_success_response(client: Client) -> None:
     response = client.get(GET_PROCESS_EXECUTION_STATUS_URL)
 
     jsonified_response = response.get_json()

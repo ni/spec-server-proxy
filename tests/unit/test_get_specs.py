@@ -14,7 +14,7 @@ from tests.constants import (
 )
 
 
-def test___valid_product___get_specs___returns_specs(client: Client):
+def test___valid_product___get_specs___returns_specs(client: Client) -> None:
     response = client.get(VALID_PRODUCT_GET_SPEC_URL)
 
     jsonified_response = response.get_json()
@@ -24,7 +24,7 @@ def test___valid_product___get_specs___returns_specs(client: Client):
     assert jsonified_response[STATE] == ScmResponseStateCodes.SUCCESS
 
 
-def test___no_spec_product___get_specs___returns_no_specs(client: Client):
+def test___no_spec_product___get_specs___returns_no_specs(client: Client) -> None:
     response = client.get(NO_SPEC_PRODUCT_GET_SPEC_URL)
 
     jsonified_response = response.get_json()
@@ -34,7 +34,7 @@ def test___no_spec_product___get_specs___returns_no_specs(client: Client):
     assert jsonified_response[STATE] == ScmResponseStateCodes.SUCCESS
 
 
-def test___invalid_product___get_specs___returns_product_not_found(client: Client):
+def test___invalid_product___get_specs___returns_product_not_found(client: Client) -> None:
     response = client.get(INVALID_PRODUCT_GET_SPEC_URL)
 
     jsonified_response = response.get_json()

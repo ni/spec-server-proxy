@@ -219,7 +219,7 @@ class TestConditionResponse:
     def test__get_condition_mappings_response_without_range(
         self,
         get_condition_data_with_no_range: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response without range."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_no_range
@@ -234,7 +234,7 @@ class TestConditionResponse:
     def test__get_condition_mappings_response_with_range(
         self,
         get_condition_data_with_range: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with range."""
         condition_mapping_response = get_condition_response_mappings(get_condition_data_with_range)
         assert condition_mapping_response == [
@@ -247,7 +247,7 @@ class TestConditionResponse:
     def test__get_condition_mappings_response_with_unit(
         self,
         get_condition_data_with_unit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with unit."""
         condition_mapping_response = get_condition_response_mappings(get_condition_data_with_unit)
         assert condition_mapping_response == [
@@ -260,7 +260,7 @@ class TestConditionResponse:
     def test__get_condition_mappings_response_with_no_unit(
         self,
         get_condition_data_with_no_unit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with no unit."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_no_unit
@@ -275,7 +275,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_no_upper_limit(
         self,
         get_condition_data_with_no_upper_limit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with no upper limit in range."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_no_upper_limit
@@ -290,7 +290,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_no_lower_limit(
         self,
         get_condition_data_with_no_lower_limit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with no lower limit in range."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_no_lower_limit
@@ -306,7 +306,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_string_data(
         self,
         get_condition_data_with_string_values: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response with string data."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_string_values
@@ -322,7 +322,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_only_limits(
         self,
         get_condition_data_with_only_limits: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response which has only limit values."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_only_limits
@@ -338,7 +338,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_for_numeric_data(
         self,
         get_condition_data_for_numeric_values: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response for list of numeric values."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_for_numeric_values
@@ -354,7 +354,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_for_single_string_value(
         self,
         get_condition_data_with_single_string_data: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response for single string value."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_single_string_data
@@ -370,7 +370,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_only_upper_limit(
         self,
         get_condition_data_with_only_upper_limit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response which has only upper limit value."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_only_upper_limit
@@ -386,7 +386,7 @@ class TestConditionResponse:
     def test_get_condition_mappings_response_with_only_lower_limit(
         self,
         get_condition_data_with_only_lower_limit: List[Condition],
-    ):
+    ) -> None:
         """Test get condition mapping response which has only lower limit value."""
         condition_mapping_response = get_condition_response_mappings(
             get_condition_data_with_only_lower_limit

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni_spec_server_proxy"
-version = "1.2.1-dev0"
+version = "1.2.1-dev1"
 description = "Python package to redirect SCM API calls to SLE APIs to exchange data with SLE Server."
 authors = ["NI <opensource@ni.com>"]
 repository = "https://github.com/ni/ni-spec-server-proxy"
@@ -21,8 +21,7 @@ packages = [{ include = "ni_spec_server_proxy", from = "src" }]
 python = "^3.8"
 aiohttp = "^3.10.9"
 yarl = "1.13.0"
-flask = "^3.0.3"
-asgiref = "^3.8.1"
+flask = { extras = ["async"], version = "^3.0.3" }
 nisystemlink-clients = "^1.3.0"
 systemlink-sdk = "^24.0.0"
 pyyaml = "^6.0.0"
@@ -36,7 +35,21 @@ priority = "primary"
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
 ni-python-styleguide = "^0.4.6"
+mypy = "^1.11.2"
+bandit = { version = "^1.7", extras = ["toml"] }
+types-PyYAML = { version = "*", optional = true }
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disallow_untyped_defs = true
+namespace_packages = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+[tool.bandit]
+skips = ["B602", "B605", "B701"]

@@ -10,6 +10,14 @@ you wish to contribute, you will need to create a GitHub account, clone this
 project, push a branch with your changes to your project, and then submit a
 pull request.
 
+Please remember to sign off your commits (e.g., by using `git commit -s` if you
+are using the command-line client). This amends your git commit message with a line
+of the form `Signed-off-by: Name LastName <name.lastmail@emailaddress.com>`. Please
+include all authors of any given commit into the commit message with a
+`Signed-off-by` line. This indicates that you have read and signed the Developer
+Certificate of Origin (see below) and can legally submit your code to
+this repository.
+
 See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
 for more details.
 
@@ -19,34 +27,39 @@ to ensure proper semantic versioning.
 
 # Getting Started
 
-To contribute to this project, it is recommended that you follow these steps:
+## Prerequisites
 
-1. Clone this repository on GitHub.
-2. Run the unit tests on your system (see Testing section). At this point,
-   if any tests fail, do not begin development. Try to investigate these
-   failures. If you're unable to do so, report an issue through our
-   [GitHub issues page](https://github.com/ni/ni-spec-server-proxy/issues).
-3. Write new tests that demonstrate your bug or feature. Ensure that these
-   new tests fail.
-4. Make your change.
-5. Run all the unit tests again (which include the tests you just added),
-   and confirm that they all pass.
-6. Send a GitHub Pull Request to the main repository's master branch. GitHub
-   Pull Requests are the expected method of code collaboration on this project.
+- Follow the steps to set up [NI SystemLink Client](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/setting-up-systemlink-client.html#:~:text=Search%20for%20and%20install%20NI,which%20you%20want%20to%20connect)
+- (Optional) Install [Visual Studio Code](https://code.visualstudio.com/download).
+- Install Git.
+- Install Python and add it to the `PATH`. For the recommended Python version,
+  see [Dependencies](README.md#dependencies).
+- Install [Poetry](https://python-poetry.org/docs/#installation). Version >= 1.8.2
 
-# Testing
+### Note
 
-Before running any tests, you must have a supported version of Python (3.8+) and [Poetry](https://python-poetry.org/docs/) installed locally.
+- Ensure to select the `NI SystemLink Python 3.8 SDK` during installation of NI SystemLink Client.
 
-**Important:** 
+## Clone or Update the Git Repository
 
-- Create a Product in SLE.
-- Enter the part number in `VALID_PRODUCT_NAME` and `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
-- It is required to install SystemLink Client and connection to SLE server is to be made.
+To download the NI Spec Server Proxy for Python source, clone its Git
+repository to your local PC.
+
+```cmd
+git clone https://github.com/ni/ni-spec-server-proxy.git
+```
+
+If you already have the Git repository on your local PC, you can update it
+
+```cmd
+git checkout main
+
+git pull
+```
 
 To setup virtual environement
 
-```
+```cmd
 cd ni_spec_server_proxy
 
 poetry env use "C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe"
@@ -54,21 +67,99 @@ poetry env use "C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\
 
 To run commands and scripts, spawn a shell within the virtual environment managed by Poetry:
 
-```
+```cmd
 poetry shell
 ```
 
+To install the dependencies,
+
+```cmd
+poetry install
+```
+
+To contribute to this project, it is recommended that you follow these steps:
+
+1. Run the unit tests on your system (see Testing section). At this point,
+   if any tests fail, do not begin development. Try to investigate these
+   failures. If you're unable to do so, report an issue through our
+   [GitHub issues page](https://github.com/ni/ni-spec-server-proxy/issues).
+2. Write new tests that demonstrate your bug or feature. Ensure that these
+   new tests fail.
+3. Make your change.
+4. Run all the unit tests again (which include the tests you just added),
+   and confirm that they all pass.
+5. Send a GitHub Pull Request to the main repository's master branch. GitHub
+   Pull Requests are the expected method of code collaboration on this project.
+
+# Testing
+
+Before running any tests, you must have a supported version of Python (3.8+) and [Poetry](https://python-poetry.org/docs/) installed locally.
+
+**Important:**
+
+- Create a Product in SLE.
+- Enter the part number in `VALID_PRODUCT_NAME` and `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
+- It is required to install SystemLink Client and connection to SLE server is to be made.
+
 To run all tests in place with your current python environment setup:
 
-```
+```cmd
 pytest
 ```
 
 To only run the tests in one particular folder, run
 
-```
+```cmd
 pytest tests/myfolder
 ```
+
+## Note
+
+- Ensure NI VPN is connected.
+
+# Lint and Build Code
+
+## Lint Code for Style and Formatting
+
+Use [ni-python-styleguide](https://github.com/ni/python-styleguide) to lint the
+code for style and formatting. This runs other tools such as `flake8`,
+`pycodestyle`, and `black`.
+
+```cmd
+poetry run ni-python-styleguide lint
+```
+
+If there are any failures, try using `ni-python-styleguide` to fix them, then
+lint the code again. If `ni-python-styleguide` doesn't fix the failures, you
+will have to manually fix them.
+
+```cmd
+poetry run ni-python-styleguide fix
+poetry run ni-python-styleguide lint
+```
+
+## Mypy Type Checking
+
+Use [Mypy](https://pypi.org/project/mypy/) to type check the code.
+
+```cmd
+poetry run mypy
+```
+
+## Bandit Security Checks
+
+Use [Bandit](https://pypi.org/project/bandit/) to check for common security issues.
+
+```cmd
+poetry run bandit -c pyproject.toml -r ni_spec_server_proxy
+```
+
+# Adding Dependencies
+
+You can add new dependencies using `poetry add` or by editing the `pyproject.toml` file.
+
+When adding new dependencies, use a `>=` version constraint (instead of `^`)
+unless the dependency uses semantic versioning.
 
 # Developer Certificate of Origin (DCO)
 

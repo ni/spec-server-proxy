@@ -204,4 +204,4 @@ async def get_process_execution_status() -> Response:
 
 async def run() -> None:
     """Flask server."""
-    app.run(host="localhost", port=60000)
+    app.run(host="localhost", port=50000)

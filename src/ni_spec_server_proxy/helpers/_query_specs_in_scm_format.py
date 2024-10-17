@@ -1,6 +1,6 @@
 """Helper functions for Fetching and converting SLE API Query Specs Response to SCM API Get Specs Response."""  # noqa: W505
 
-from typing import Dict, List, Union, TypedDict
+from typing import Dict, List, TypedDict, Union
 
 from nisystemlink.clients.spec import SpecClient
 from nisystemlink.clients.spec.models import (

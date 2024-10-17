@@ -94,7 +94,6 @@ To contribute to this project, it is recommended that you follow these steps:
 ### Note
 
 - Ensure NI VPN is connected while installing dependencies.
- 
 
 # Testing
 
@@ -117,10 +116,6 @@ To only run the tests in one particular folder, run
 ```cmd
 pytest tests/myfolder
 ```
-
-## Note
-
-- Ensure NI VPN is connected.
 
 # Lint and Build Code
 

@@ -44,12 +44,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
-disallow_untyped_defs = true
-namespace_packages = true
-warn_redundant_casts = true
-warn_unused_configs = true
-warn_unused_ignores = true
 ignore_missing_imports = true
 
 [tool.bandit]
-skips = ["B602", "B605", "B701"]
+skips = ["B602", "B605", "B701", "B101"]

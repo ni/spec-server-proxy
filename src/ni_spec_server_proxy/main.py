@@ -100,8 +100,8 @@ async def get_specs(product_name: str, product_revision: str) -> Response:
 
         else:
             product_id = query_product_response.products[0].id
-            response = get_query_specs_response(product_id=product_id, spec_client=spec_client)
-            response = jsonify(response)
+            queried_specs = get_query_specs_response(product_id=product_id, spec_client=spec_client)
+            response = jsonify(queried_specs)
 
         return response
 
@@ -128,6 +128,13 @@ async def upload_measurement(product_name: str, product_revision: str, disciplin
     """
     os.makedirs(FileUpload.DIRECTORY, exist_ok=True)
     file = request.files[FileUpload.FORM_COLLECTION]
+
+    if not file.filename:
+        error_response = get_error_response(
+            error_message="Invalid file name.",
+            status_code=StatusCode.BAD_REQUEST,
+        )
+        return error_response
 
     # FileName format:
     # [StationID][SequenceFile][Data][Time][BatchSerialNumber][UUTSerialNumber][TestSocket].csv
@@ -195,6 +202,6 @@ async def get_process_execution_status() -> Response:
     return jsonify(response)
 
 
-async def run():
+async def run() -> None:
     """Flask server."""
-    app.run(host="localhost", port=50000)
+    app.run(host="localhost", port=60000)

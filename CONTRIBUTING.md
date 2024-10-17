@@ -91,6 +91,11 @@ To contribute to this project, it is recommended that you follow these steps:
 5. Send a GitHub Pull Request to the main repository's master branch. GitHub
    Pull Requests are the expected method of code collaboration on this project.
 
+### Note
+
+- Ensure NI VPN is connected while installing dependencies.
+ 
+
 # Testing
 
 Before running any tests, you must have a supported version of Python (3.8+) and [Poetry](https://python-poetry.org/docs/) installed locally.

@@ -1,4 +1,4 @@
-# Contributing to *ni-spec-server-proxy* 
+# Contributing to *ni-spec-server-proxy*
 
 Contributions to *ni-spec-server-proxy* are welcome from all!
 
@@ -21,9 +21,9 @@ this repository.
 See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
 for more details.
 
-**Important:** Commit titles and messages should adhere to the
+It is recommended to adhere to the
 [Angular style](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
-to ensure proper semantic versioning.
+Commits titles and messages to ensure proper semantic versioning.
 
 # Getting Started
 
@@ -99,10 +99,13 @@ To contribute to this project, it is recommended that you follow these steps:
 
 Before running any tests, you must have a supported version of Python (3.8+) and [Poetry](https://python-poetry.org/docs/) installed locally.
 
-**Important:**
+## Steps to run tests
 
 - Create a Product in SLE.
-- Enter the part number in `VALID_PRODUCT_NAME` and `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder before running tests.
+- Upload specifications file and extract.
+- Enter the part number in `VALID_PRODUCT_NAME` and `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder.
+- Create another product in SLE.
+- Enter the part number in `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder.
 - It is required to install SystemLink Client and connection to SLE server is to be made.
 
 To run all tests in place with your current python environment setup:
@@ -143,7 +146,9 @@ poetry run ni-python-styleguide lint
 Use [Mypy](https://pypi.org/project/mypy/) to type check the code.
 
 ```cmd
-poetry run mypy
+poetry run mypy src
+
+poetry run mypy tests
 ```
 
 ## Bandit Security Checks
@@ -151,7 +156,9 @@ poetry run mypy
 Use [Bandit](https://pypi.org/project/bandit/) to check for common security issues.
 
 ```cmd
-poetry run bandit -c pyproject.toml -r ni_spec_server_proxy
+poetry run bandit -c pyproject.toml -r src
+
+poetry run bandit -c pyproject.toml -r tests
 ```
 
 # Adding Dependencies

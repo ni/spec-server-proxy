@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## NI Spec Server Proxy
 
+## [1.2.1-dev1] - 2024-10-21
+
+### Fixed
+
+- Error while converting SLE specs to SCM specs.
+
+### Changed
+
+- Code to resolve mypy errors.
+
 ## [1.2.1.dev0] - 2024-10-09
 
 ### Changed

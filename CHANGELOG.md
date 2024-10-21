@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Code to resolve mypy errors.
+- Resolved mypy errors.
 
 ## [1.2.1-dev0] - 2024-10-09
 

@@ -9,7 +9,7 @@
 
 ## Introduction
 
-- NI Spec Server Proxy is a python server used for accessing SLE products and specifications using SLE APIs.
+- NI Spec Server Proxy is a Python server used for accessing SLE products and specifications using SLE APIs.
 
 ## Dependencies
 

@@ -21,10 +21,6 @@ this repository.
 See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
 for more details.
 
-It is recommended to adhere to the
-[Angular style](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
-Commits titles and messages to ensure proper semantic versioning.
-
 # Getting Started
 
 ## Prerequisites
@@ -163,6 +159,16 @@ Use [Bandit](https://pypi.org/project/bandit/) to check for common security issu
 poetry run bandit -c pyproject.toml -r src
 
 poetry run bandit -c pyproject.toml -r tests
+```
+
+## Build Distribution Packages
+
+To build distribution packages, run `poetry build`. This generates installable
+distribution packages (source distributions and wheels) in the `dist`
+subdirectory.
+
+```cmd
+poetry build
 ```
 
 # Adding Dependencies

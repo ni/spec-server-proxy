@@ -57,6 +57,8 @@ git checkout main
 git pull
 ```
 
+## Set up Virtual Envirnoment
+
 To setup virtual environement
 
 ```cmd
@@ -76,6 +78,8 @@ To install the dependencies,
 ```cmd
 poetry install
 ```
+
+## Steps to Contribute
 
 To contribute to this project, it is recommended that you follow these steps:
 
@@ -108,7 +112,7 @@ Before running any tests, you must have a supported version of Python (3.8+) and
 - Enter the part number in `NO_SPEC_PRODUCT_NAME` in `constants.py` under `tests` folder.
 - It is required to install SystemLink Client and connection to SLE server is to be made.
 
-To run all tests in place with your current python environment setup:
+To run all tests in place with your current Python environment setup:
 
 ```cmd
 pytest

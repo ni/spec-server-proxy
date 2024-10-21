@@ -136,7 +136,7 @@ def get_condition_response_mappings(spec_conditions: List[Condition]) -> List[Di
     return condition_response_mapping
 
 
-def __get_info_response_mappings(spec_info_data: Dict[str, str]) -> List[Dict[str, str]]:
+def get_info_response_mappings(spec_info_data: Dict[str, str]) -> List[Dict[str, str]]:
     """Get spec info response mappings of SCM get specs API.
 
     Args:
@@ -199,7 +199,7 @@ def convert_query_specs_response(query_specs_response: QuerySpecifications) -> S
             formatted_spec_data[LimitParams.MAX] = None
 
         if spec_data.properties:
-            formatted_spec_data[ScmGetSpecsResponse.INFO] = __get_info_response_mappings(
+            formatted_spec_data[ScmGetSpecsResponse.INFO] = get_info_response_mappings(
                 spec_data.properties
             )
 

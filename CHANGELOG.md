@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Error while converting SLE specs to SCM specs.
+- Bug due to error while converting SLE specs to SCM specs.
 
 ### Changed
 

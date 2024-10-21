@@ -111,13 +111,13 @@ Before running any tests, you must have a supported version of Python (3.8+) and
 To run all tests in place with your current Python environment setup:
 
 ```cmd
-pytest
+poetry run pytest
 ```
 
 To only run the tests in one particular folder, run
 
 ```cmd
-pytest tests/myfolder
+poetry run pytest tests/myfolder
 ```
 
 # Lint and Build Code

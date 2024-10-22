@@ -46,4 +46,4 @@ Search open/closed issues before submitting. Someone may have reported the same 
 * OS & Device: [e.g. macOS, Windows, Linux] on [Mac, PC]
 * SystemLink Client version [e.g. 24.0.0.49237-0+f85]
 * TestStand version [e.g. 24.8.0.49453-0+f301]
-* SpecServerProxy version [e.g. 1.2.0.dev0]
+* NI Spec Server Proxy version [e.g. 1.2.0.dev0]

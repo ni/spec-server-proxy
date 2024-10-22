@@ -1,7 +1,7 @@
 """Implementation of error handlers for flask server."""
 
 from functools import wraps
-from typing import Callable
+from typing import Any, Callable, Tuple
 
 from flask import Response, jsonify
 from nisystemlink.clients.core import ApiException as NiSystemlinkException
@@ -35,7 +35,7 @@ def get_error_response(error_message: str, status_code: int) -> Response:
 def handle_errors(error_message: str) -> Callable:
     """Handle errors by providing a custom error message.
 
-    It can be applied to Flask route functions to catch exceptions that occur\
+    Function can be applied to Flask route functions to catch exceptions that occur\
     during their execution.
 
     Args:
@@ -45,9 +45,9 @@ def handle_errors(error_message: str) -> Callable:
         Callable: Decorated route function.
     """
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
         @wraps(func)
-        async def wrapper(*args, **kwargs):
+        async def wrapper(*args: Tuple[Any], **kwargs: Tuple[Any]) -> Callable:
             try:
                 result = await func(*args, **kwargs)
                 return result
@@ -55,12 +55,15 @@ def handle_errors(error_message: str) -> Callable:
             except NiSystemlinkException as err:
                 response = get_error_response(
                     error_message=str(err),
-                    status_code=err.http_status_code,
+                    status_code=err.http_status_code or StatusCode.INTERNAL_SERVER_ERROR,
                 )
                 return response
 
             except (TestMonitorException, FileServicesException) as err:
-                response = get_error_response(error_message=str(err), status_code=err.status)
+                response = get_error_response(
+                    error_message=str(err),
+                    status_code=err.status or StatusCode.INTERNAL_SERVER_ERROR,
+                )
                 return response
 
             except Exception:

@@ -26,7 +26,7 @@ from tests.constants import (
 def test___valid_measurement_file___upload_measurement___returns_success_response(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     data = get_upload_measurement_data(file_path=VALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
@@ -46,7 +46,7 @@ def test___valid_measurement_file___upload_measurement___returns_success_respons
 def test___invalid_measurement_file___upload_measurement___returns_internal_server_error(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     data = get_upload_measurement_data(file_path=INVALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(
@@ -65,7 +65,7 @@ def test___invalid_measurement_file___upload_measurement___returns_internal_serv
 def test___invalid_product___upload_measurement___returns_product_not_found(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     data = get_upload_measurement_data(file_path=VALID_MEASUREMENT_FILE_PATH)
 
     response = client.post(

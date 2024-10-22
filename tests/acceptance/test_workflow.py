@@ -36,7 +36,7 @@ from tests.constants import (
 def test___connected_to_sle___product_available____returns_success_response(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     products_response = client.get(GET_PRODUCTS_URL)
 
     jsonified_products_response = products_response.get_json()
@@ -94,7 +94,7 @@ def test___connected_to_sle___product_available____returns_success_response(
 def test___connected_to_sle___product_unavailable___return_product_not_found(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     products_response = client.get(GET_PRODUCTS_URL)
 
     jsonified_products_response = products_response.get_json()
@@ -151,7 +151,7 @@ def test___connected_to_sle___product_unavailable___return_product_not_found(
 def test___connected_to_sle___invalid_measurement_file___return_internal_server_error(
     client: Client,
     get_upload_measurement_data: Callable,
-):
+) -> None:
     products_response = client.get(GET_PRODUCTS_URL)
 
     jsonified_products_response = products_response.get_json()

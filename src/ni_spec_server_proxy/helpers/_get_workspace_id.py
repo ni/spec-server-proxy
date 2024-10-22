@@ -18,4 +18,4 @@ def get_system_workspace() -> str:
     with open(WorkSpaceIDPath.SL_CLIENT_GRAIN_FILE_PATH, "r") as fp:
         grain_data: Dict = yaml.safe_load(fp)
 
-    return grain_data.get(SYSTEMLINK_WORKSPACE)
+    return str(grain_data.get(SYSTEMLINK_WORKSPACE))

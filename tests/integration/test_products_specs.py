@@ -16,7 +16,7 @@ from tests.constants import (
 
 def test___connected_to_sle___available_products_available_specs___returns_success_response(
     client: Client,
-):
+) -> None:
     response = client.get(GET_PRODUCTS_URL)
 
     jsonified_response = response.get_json()
@@ -36,7 +36,7 @@ def test___connected_to_sle___available_products_available_specs___returns_succe
 
 def test___connected_to_sle___available_products_unavailable_specs___returns_success_response(
     client: Client,
-):
+) -> None:
     response = client.get(GET_PRODUCTS_URL)
 
     jsonified_response = response.get_json()

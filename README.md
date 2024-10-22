@@ -1,48 +1,33 @@
 # NI Spec Server Proxy
 
-### Description
+- [NI Spec Server Proxy](#ni-spec-server-proxy)
+  - [Introduction](#introduction)
+  - [Dependencies](#dependencies)
+  - [Example using NI TestStand](#example-using-ni-teststand)
+    - [Installing Python package using wheel file](#installing-python-package-using-wheel-file)
+    - [NI TestStand](#ni-teststand)
 
-- NI Spec Server Proxy is a python server used for accessing SLE products and specifications using SLE APIs.
+## Introduction
 
-### Prerequisites
+- NI Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise(SLE) using the NI Specification Compliance Manager(SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
 
-- Follow the steps to set up [NI SystemLink Client](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/setting-up-systemlink-client.html#:~:text=Search%20for%20and%20install%20NI,which%20you%20want%20to%20connect)
+## Dependencies
 
-#### Note
+- Python 3.8.5
+- systemlink-sdk = "^24.0.0"
 
-- Ensure to select the `NI SystemLink Python 3.8 SDK` during installation of NI SystemLink Client.
+The above dependencies are satisfied by installing [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html) with `Python SDK` option checked.
 
-### Code Setup
+## Example using NI TestStand
 
-- Clone the repository using `git clone <respository link>`.
-- Check out to the required branch using `git checkout <branch name>`.
-
-### Setup Virtual Environment
-
-- Open terminal.
-- Run `cd ni-spec-server-proxy`
-- Run `poetry env use "C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe"`.
-- Run `poetry shell` to activate virtual environment.
-- Run `poetry install` to install dependency files.
-
-#### Note
-
-- Ensure NI VPN is connected.
-
-### Example using NI TestStand
-
-#### Build whl File
-
-- Run `poetry build` to build whl file.
-
-#### Installation of whl File
+### Installing Python package using wheel file
 
 - Run `"C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe" -m pip install ni_spec_server_proxy-X_X_X-py3-none-any.whl` to install whl file.
 - Run `"C:\Program Files\National Instruments\Shared\Skyline\Python\3.8\python.exe" -m ni_spec_server_proxy` to run server.
 
-#### NI TestStand
+### NI TestStand
 
-- Open NI TestStand.
+- Launch NI TestStand Sequence Editor.
 - Click `Tools`.
 - Click `Import/Update from Specification Compliance Manager (SCM)`.
 - In the opened dialog box, enter Server URL as `http://localhost:50000/`.

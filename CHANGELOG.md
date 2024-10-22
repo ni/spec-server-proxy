@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## NI Spec Server Proxy
 
-## [1.2.1.dev0] - 2024-10-09
+## [1.2.1-dev1] - 2024-10-21
+
+### Fixed
+
+- Bug due to error while converting SystemLink Enterprise's(SLE) specifications' format to Specification Compliance Manager's(SCM) specifications' format.
+
+### Changed
+
+- Resolved mypy errors.
+
+## [1.2.1-dev0] - 2024-10-09
 
 ### Changed
 

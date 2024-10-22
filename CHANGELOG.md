@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Bug due to error while converting SLE specs to SCM specs.
+- Bug due to error while converting SystemLink Enterprise's(SLE) specifications' format to Specification Compliance Manager's(SCM) specifications' format.
 
 ### Changed
 

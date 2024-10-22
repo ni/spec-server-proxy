@@ -46,7 +46,7 @@ NI TestStand has a workflow to exchange data with the Specification Compliance M
 
 So, the solution is to create a Python server to act as a proxy which redirects the SCM server requests to SLE server without affecting the TestStand - Specification Compliance Manager workflow.
 
-To create a Python server, Flask framework will be used. The flask server will be running locally in the port 8000. The server can be accessed at http://localhost:8000
+To create a Python server, Flask framework will be used. The flask server will be running locally in the port 50000. The server can be accessed at http://localhost:50000
 
 ### Dependencies - NI Python Packages
 
@@ -385,7 +385,7 @@ The below picture shows data flow between SystemLink Enterprise and TestStand.
 ![ToolsOption](ToolsOption.png)
 
 - Enter the credentials in the dialog box,
-  - Server - http://localhost:8000
+  - Server - http://localhost:50000
   - API token - None
 
 ![ConnectToSLE](ConnectToSLE.png)
@@ -429,7 +429,7 @@ No alternative implementations.
 
 ## Open Issues
 
-- Socket error will be raised if the port 8000 is already in use.
+- Socket error will be raised if the port 50000 is already in use.
 
 ## Future Plans
 

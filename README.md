@@ -9,12 +9,14 @@
 
 ## Introduction
 
-- NI Spec Server Proxy is a Python server used for accessing SLE products and specifications using SLE APIs.
+- NI Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise(SLE) using the NI Specification Compliance Manager(SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
 
 ## Dependencies
 
-- Python 3.8 - From [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html#521644)
-- systemlink-sdk = "^24.0.0" From [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html#521644)
+- Python 3.8.5
+- systemlink-sdk = "^24.0.0"
+
+The above dependencies are satisfied by installing [SystemLink Client](https://www.ni.com/en/support/downloads/software-products/download.systemlink-client.html) with `Python SDK` option checked.
 
 ## Example using NI TestStand
 
@@ -25,7 +27,7 @@
 
 ### NI TestStand
 
-- Open NI TestStand.
+- Launch NI TestStand Sequence Editor.
 - Click `Tools`.
 - Click `Import/Update from Specification Compliance Manager (SCM)`.
 - In the opened dialog box, enter Server URL as `http://localhost:50000/`.

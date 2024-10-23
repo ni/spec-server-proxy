@@ -8,8 +8,8 @@
   - [How to communicate TestStand with SLE?](#how-to-communicate-teststand-with-sle)
     - [Set up SystemLink Client](#set-up-systemlink-client)
     - [NI TestStand](#ni-teststand)
-    - [How to start the NI Spec Server Proxy on windows startup automatically?](#how-to-start-the-ni-spec-server-proxy-on-windows-startup-automatically)
-      - [Note](#note)
+  - [How to start the proxy service on windows startup automatically?](#how-to-start-the-proxy-service-on-windows-startup-automatically)
+    - [Note](#note)
 
 ## Introduction
 
@@ -62,7 +62,7 @@ Run the NI Spec Server Proxy after [setting up SystemLink Client](#set-up-system
 - Select a PartNumber and select the categories to import the specifications.
 - Use the specification details imported into FileGlobals.SCM_Specifications in the Test Sequence for Test Automation and measurement data logging with test conditions using the TestStand SCM Integration Workflow.
 
-### How to start the NI Spec Server Proxy on windows startup automatically?
+## How to start the proxy service on windows startup automatically?
 
 - Download the [spec-server-proxy.bat](batch_files/spec-server-proxy.bat)
 - Press **Win + R** to open the Run dialog.
@@ -74,7 +74,7 @@ Run the NI Spec Server Proxy after [setting up SystemLink Client](#set-up-system
 - Place the `spec-server-proxy.bat` file in the Startup folder.
 - This batch file will start whenever the PC is turned on.
 
-#### Note
+### Note
 
 - Do not close the NI Spec Server Proxy window. The proxy service will terminate when this window is closed.
 

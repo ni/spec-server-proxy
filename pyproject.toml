@@ -3,7 +3,9 @@ name = "ni_spec_server_proxy"
 version = "1.2.1-dev1"
 description = "Python package to redirect SCM API calls to SLE APIs to exchange data with SLE Server."
 authors = ["NI <opensource@ni.com>"]
+readme = "README.md"
 repository = "https://github.com/ni/ni-spec-server-proxy"
+packages = [{ include = "ni_spec_server_proxy", from = "src" }]
 license = "MIT"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -14,8 +16,6 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Scientific/Engineering",
 ]
-readme = "README.md"
-packages = [{ include = "ni_spec_server_proxy", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"

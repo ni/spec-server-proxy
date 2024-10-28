@@ -378,7 +378,7 @@ The below picture shows data flow between SystemLink Enterprise and TestStand.
 
   - Refer to the [instructions to create an API key](https://www.ni.com/docs/en-US/bundle/systemlink-enterprise/page/creating-an-api-key.html)
 
-- Run ni_spec_server_proxy.bat file to run the server.
+- Run `ni_spec_server_proxy.bat` to run the server.
 - Open NI TestStand Sequence Editor.
 - Select *Tools > Import/Update from Specification Compliance Manager (SCM)* from the TestStand Sequence Editor menu bar.
 

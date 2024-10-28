@@ -73,14 +73,14 @@
 
 ## How to start the proxy service on windows startup automatically?
 
-- Download the [spec-server-proxy.bat](batch_files/spec-server-proxy.bat) from this repository.
+- Download the [ni_spec_server_proxy.bat](batch_files/ni_spec_server_proxy.bat) from this repository.
 - Press **Win + R** to open the Run dialog.
 - Type **shell:startup** and press Enter.
 
   ![RunDialog](docs/images/RunDialog.png)
 
 - The Startup folder opens.
-- Place the `spec-server-proxy.bat` file in the Startup folder.
+- Place the `ni_spec_server_proxy.bat` file in the Startup folder.
 - This batch file will be automatically executed whenever the Personal Computer gets powered on.
 
 ### Note

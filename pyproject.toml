@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni_spec_server_proxy"
-version = "1.2.1-dev1"
+version = "1.2.1"
 description = "Python package to redirect SCM API calls to SLE APIs to exchange data with SLE Server."
 authors = ["NI <opensource@ni.com>"]
 readme = "README.md"

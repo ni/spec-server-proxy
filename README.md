@@ -13,7 +13,7 @@
 
 ## Introduction
 
-- The Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) using the NI Specification Compliance Manager (SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
+- The Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) via the NI Specification Compliance Manager (SCM) Server APIs. This allows user applications developed for the NI SCM Server to operate with SLE without requiring modifications on the application side.
 
 ## Dependencies
 

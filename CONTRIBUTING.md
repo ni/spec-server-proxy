@@ -1,11 +1,11 @@
-# Contributing to *ni-spec-server-proxy*
+# Contributing to Spec Server Proxy
 
-Contributions to *ni-spec-server-proxy* are welcome from all!
+Contributions to Spec Server Proxy are welcome from all!
 
-*ni-spec-server-proxy* is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/ni-spec-server-proxy).
+Spec Server Proxy is managed via [git](https://git-scm.com), with the canonical upstream
+repository hosted on [GitHub](https://github.com/ni/spec-server-proxy).
 
-*ni-spec-server-proxy* follows a pull-request model for development.  If
+Spec Server Proxy follows a pull-request model for development.  If
 you wish to contribute, you will need to create a GitHub account, clone this
 project, push a branch with your changes to your project, and then submit a
 pull request.
@@ -42,7 +42,7 @@ To download the NI Spec Server Proxy for Python source, clone its Git
 repository to your local PC.
 
 ```cmd
-git clone https://github.com/ni/ni-spec-server-proxy.git
+git clone https://github.com/ni/spec-server-proxy.git
 ```
 
 If you already have the Git repository on your local PC, you can update it
@@ -82,7 +82,7 @@ To contribute to this project, it is recommended that you follow these steps:
 1. Run the unit tests on your system (see Testing section). At this point,
    if any tests fail, do not begin development. Try to investigate these
    failures. If you're unable to do so, report an issue through our
-   [GitHub issues page](https://github.com/ni/ni-spec-server-proxy/issues).
+   [GitHub issues page](https://github.com/ni/spec-server-proxy/issues).
 2. Write new tests that demonstrate your bug or feature. Ensure that these
    new tests fail.
 3. Make your change.
@@ -208,5 +208,5 @@ unless the dependency uses semantic versioning.
 
 (taken from [developercertificate.org](https://developercertificate.org/))
 
-See [LICENSE](https://github.com/ni/ni-spec-server-proxy/blob/main/LICENSE)
-for details about how *ni-spec-server-proxy* is licensed.
+See [LICENSE](https://github.com/ni/spec-server-proxy/blob/main/LICENSE)
+for details about how Spec Server Proxy is licensed.

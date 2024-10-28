@@ -1,6 +1,6 @@
-# NI Spec Server Proxy
+# Spec Server Proxy
 
-- [NI Spec Server Proxy](#ni-spec-server-proxy)
+- [Spec Server Proxy](#spec-server-proxy)
   - [Introduction](#introduction)
   - [Dependencies](#dependencies)
   - [How to install?](#how-to-install)
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-- NI Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) using the NI Specification Compliance Manager (SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
+- The Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) via the NI Specification Compliance Manager (SCM) Server APIs. This allows user applications developed for the NI SCM Server to operate with SLE without requiring modifications on the application side.
 
 ## Dependencies
 
@@ -33,7 +33,7 @@
 
 ## How to run?
 
-- Run [spec-server-proxy.bat](batch_files/spec-server-proxy.bat) to run server.
+- Run [ni_spec_server_proxy.bat](batch_files/ni_spec_server_proxy.bat) to run server.
 
   Or
 
@@ -73,14 +73,14 @@
 
 ## How to start the proxy service on windows startup automatically?
 
-- Download the [spec-server-proxy.bat](batch_files/spec-server-proxy.bat) from this repository.
+- Download the [ni_spec_server_proxy.bat](batch_files/ni_spec_server_proxy.bat) from this repository.
 - Press **Win + R** to open the Run dialog.
 - Type **shell:startup** and press Enter.
 
   ![RunDialog](docs/images/RunDialog.png)
 
 - The Startup folder opens.
-- Place the `spec-server-proxy.bat` file in the Startup folder.
+- Place the `ni_spec_server_proxy.bat` file in the Startup folder.
 - This batch file will be automatically executed whenever the Personal Computer gets powered on.
 
 ### Note

@@ -1,11 +1,11 @@
-# Contributing to *spec-server-proxy*
+# Contributing to Spec Server Proxy
 
-Contributions to *spec-server-proxy* are welcome from all!
+Contributions to Spec Server Proxy are welcome from all!
 
-*spec-server-proxy* is managed via [git](https://git-scm.com), with the canonical upstream
+Spec Server Proxy is managed via [git](https://git-scm.com), with the canonical upstream
 repository hosted on [GitHub](https://github.com/ni/spec-server-proxy).
 
-*spec-server-proxy* follows a pull-request model for development.  If
+Spec Server Proxy follows a pull-request model for development.  If
 you wish to contribute, you will need to create a GitHub account, clone this
 project, push a branch with your changes to your project, and then submit a
 pull request.
@@ -209,4 +209,4 @@ unless the dependency uses semantic versioning.
 (taken from [developercertificate.org](https://developercertificate.org/))
 
 See [LICENSE](https://github.com/ni/spec-server-proxy/blob/main/LICENSE)
-for details about how *spec-server-proxy* is licensed.
+for details about how Spec Server Proxy is licensed.

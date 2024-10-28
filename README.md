@@ -1,6 +1,6 @@
-# NI Spec Server Proxy
+# Spec Server Proxy
 
-- [NI Spec Server Proxy](#ni-spec-server-proxy)
+- [Spec Server Proxy](#spec-server-proxy)
   - [Introduction](#introduction)
   - [Dependencies](#dependencies)
   - [How to install?](#how-to-install)
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-- NI Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) using the NI Specification Compliance Manager (SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
+- The Spec Server Proxy is a Python server that extracts product specifications and uploads measurement data to SystemLink Enterprise (SLE) using the NI Specification Compliance Manager (SCM) Server's APIs. This enables user applications built for the NI SCM Server to work with SLE without application-side changes.
 
 ## Dependencies
 
@@ -33,7 +33,7 @@
 
 ## How to run?
 
-- Run [spec-server-proxy.bat](batch_files/spec-server-proxy.bat) to run server.
+- Run [ni_spec_server_proxy.bat](batch_files/ni_spec_server_proxy.bat) to run server.
 
   Or
 
